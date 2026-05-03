@@ -1,49 +1,43 @@
-# 💀 SkullMania
+# SkullMania
 
-A 2D platformer game built with **Unity**, featuring player movement, a health system, collectibles, hazards, and full game state management (Start, Pause, Game Over, Win).
+SkullMania is a 2D Unity platformer built around responsive movement, state-driven player logic, and a clear win-condition loop. The player moves through a designed level, collects keys, avoids hazards, and reaches the chest once the score requirement is met.
 
----
+## Overview
 
-## 🎮 Gameplay Overview
+The gameplay loop is intentionally compact: explore the level, collect Gold Keys to raise your score, survive spikes and recover with potions, and open the Chest to win. The project separates movement, animation, health, scoring, and game-state handling so the experience stays maintainable and easy to extend.
 
-You play as a skull-themed character navigating a 2D level. Your goal is to **collect Gold Keys** to build up your score and then **open the Chest** to win — all while avoiding spikes and staying alive.
+## Key Features
 
-| Objective | Detail |
-|---|---|
-| 🗝️ Collect Gold Keys | Each key gives **+25 score** |
-| 📦 Open the Chest | Requires **≥ 75 score** — triggers a Win! |
-| ❤️ Survive | Avoid spikes; pick up Potions to heal |
+- State-driven player behavior with a PlayerStateMachine and PlayerStateFactory
+- Health system with damage cooldowns and healing pickups
+- Score-based progression tied to the win condition
+- Game manager controls for start, pause, restart, and quit flows
+- Win and game over UI states for clear end-of-run feedback
+- Level boundary clamping to keep the player inside the playable space
+- Animator-driven character feedback through PlayerAnimator
 
----
+## Gameplay Rules
 
-## 🕹️ Controls
+| Objective         | Behavior                                   |
+| ----------------- | ------------------------------------------ |
+| Collect Gold Keys | Each key grants 25 score                   |
+| Open the Chest    | Requires at least 75 score to win          |
+| Survive Hazards   | Spikes deal damage; potions restore health |
 
-| Input | Action |
-|---|---|
-| `A` / `D` or `←` / `→` | Move left / right |
-| `Space` | Jump |
-| `Space` (mid-air) | Double Jump |
-| `Escape` | Pause / Resume |
+## Controls
 
----
+| Input                 | Action            |
+| --------------------- | ----------------- |
+| A / D or Left / Right | Move horizontally |
+| Space                 | Jump              |
+| Space in mid-air      | Double jump       |
+| Escape                | Pause or resume   |
 
-## ⚙️ Features
+## Project Structure
 
-- **State Machine Architecture** — Player states (Idle, Walking, Jumping, Double Jump, Falling) are managed via a clean `PlayerStateMachine` with a `PlayerStateFactory`
-- **Health System** — 100 HP max; spikes deal 25 damage (with a 1s cooldown); potions heal +10 HP
-- **Score System** — TextMeshPro live score display; score gates the win condition
-- **Game Manager** — Handles Start Panel, Pause Panel, Restart, and Quit
-- **Game Over / Win Panels** — Triggered on death or chest collection
-- **Boundary Clamping** — Player is kept within the defined level bounds at all times
-- **Animated Player** — Uses a Unity Animator Controller (`PlayerAnimator`) tied to state transitions
-
----
-
-## 📁 Project Structure
-
-```
+```text
 Assets/
-├── Scripts/                  # State machine scripts
+├── Scripts/
 │   ├── PlayerStateMachine.cs
 │   ├── PlayerBaseState.cs
 │   ├── PlayerStateFactory.cs
@@ -52,57 +46,48 @@ Assets/
 │   ├── JumpingState.cs
 │   ├── DoubleJumpState.cs
 │   └── FallingState.cs
-├── PlayerMovement.cs         # Core movement, scoring & win/lose logic
-├── playerhealth.cs           # Health, damage cooldown, healing
-├── GameManager.cs            # Start, pause, restart & quit
-├── PlayerAnimator.controller # Animator for player states
-├── Sprites/                  # 2D art assets
-├── Decor/                    # Environment decorations
-├── Plattle/                  # Platform assets
+├── PlayerMovement.cs
+├── playerhealth.cs
+├── GameManager.cs
+├── PlayerAnimator.controller
+├── Sprites/
+├── Decor/
+├── Plattle/
 ├── Scenes/
-│   └── SampleScene.unity     # Main game scene
-└── TextMesh Pro/             # TMP assets
+│   └── SampleScene.unity
+└── TextMesh Pro/
 ```
 
----
+## Required Tags
 
-## 🏷️ Required Tags
+| Tag     | Purpose                                        |
+| ------- | ---------------------------------------------- |
+| Ground  | Ground detection                               |
+| Spike   | Applies damage to the player                   |
+| KeyGold | Collectible that increases score               |
+| Chest   | Win trigger after reaching the score threshold |
+| Potion  | Restores health                                |
 
-Make sure the following tags are defined in your Unity project:
-
-| Tag | Used For |
-|---|---|
-| `Ground` | Grounded detection |
-| `Spike` | Deal 25 damage to player |
-| `KeyGold` | Collectible — grants +25 score |
-| `Chest` | Win trigger (needs ≥ 75 score) |
-| `Potion` | Heal the player by +10 HP |
-
----
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
-- **Unity 2021.3 LTS** or later (2D project template)
-- **TextMeshPro** package (install via Package Manager if not already included)
 
-### Running the Game
-1. Clone the repository
-2. Open the project in Unity Hub
-3. Open `Assets/Scenes/SampleScene.unity`
-4. Press **Play** in the Unity Editor
+- Unity 2021.3 LTS or later
+- TextMeshPro package installed through Package Manager if it is not already included
 
----
+### Run the Project
 
-## 🏗️ Building
+1. Open the repository in Unity Hub
+2. Load Assets/Scenes/SampleScene.unity
+3. Enter Play Mode in the Unity Editor
 
-1. Go to **File → Build Settings**
-2. Add `SampleScene` to the build
-3. Select your target platform (PC, Android, WebGL, etc.)
-4. Click **Build**
+## Building
 
----
+1. Open File > Build Settings
+2. Add SampleScene to the build list
+3. Choose a target platform such as PC, Android, or WebGL
+4. Click Build
 
-## 📜 License
+## License
 
-This project is for educational/personal use. Feel free to fork and build upon it.
+This project is intended for educational and personal use. Feel free to fork it and adapt it for your own experiments.
