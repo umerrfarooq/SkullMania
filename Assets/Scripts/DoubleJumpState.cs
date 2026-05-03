@@ -11,7 +11,7 @@ public class DoubleJumpState : PlayerBaseState
     public override void Enter()
     {
         // Apply double jump force
-        ctx.rb.velocity = new Vector2(ctx.rb.velocity.x, ctx.jumpForce * ctx.doubleJumpMultiplier);
+        ctx.rb.linearVelocity = new Vector2(ctx.rb.linearVelocity.x, ctx.jumpForce * ctx.doubleJumpMultiplier);
         ctx.canDoubleJump = false;
         
         // Update animations
@@ -27,10 +27,10 @@ public class DoubleJumpState : PlayerBaseState
     public override void Update()
     {
         // Air control during double jump
-        ctx.rb.velocity = new Vector2(ctx.moveInput * ctx.speed, ctx.rb.velocity.y);
+        ctx.rb.linearVelocity = new Vector2(ctx.moveInput * ctx.speed, ctx.rb.linearVelocity.y);
         
         // Transition to falling
-        if (ctx.rb.velocity.y < 0)
+        if (ctx.rb.linearVelocity.y < 0)
         {
             ctx.ChangeState(factory.Falling());
         }

@@ -55,18 +55,18 @@ public class PlayerMovement : MonoBehaviour
         if (isGameOver) return;
 
         float move = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(move * speed, rb.velocity.y);
+        rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGrounded)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 canDoubleJump = true;
             }
             else if (canDoubleJump)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce * doubleJumpMultiplier);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce * doubleJumpMultiplier);
                 canDoubleJump = false;
             }
         }
@@ -89,9 +89,9 @@ public class PlayerMovement : MonoBehaviour
         if (pos.y < minY)
         {
             pos.y = minY;
-            if (rb.velocity.y < 0)
+            if (rb.linearVelocity.y < 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
                 isGrounded = true;
             }
         }

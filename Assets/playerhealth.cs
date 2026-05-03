@@ -54,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            rb.velocity = new Vector2(rb.velocity.x, 5f);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 5f);
         }
 
         canTakeDamage = false;

@@ -110,13 +110,13 @@ public class PlayerStateMachine : MonoBehaviour
         if (playerPos.x < minX)
         {
             newPos.x = minX;
-            if (rb.velocity.x < 0) rb.velocity = new Vector2(0, rb.velocity.y);
+            if (rb.linearVelocity.x < 0) rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             clamped = true;
         }
         else if (playerPos.x > maxX)
         {
             newPos.x = maxX;
-            if (rb.velocity.x > 0) rb.velocity = new Vector2(0, rb.velocity.y);
+            if (rb.linearVelocity.x > 0) rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             clamped = true;
         }
 
@@ -127,18 +127,18 @@ public class PlayerStateMachine : MonoBehaviour
         if (playerPos.y < minY)
         {
             newPos.y = minY;
-            if (rb.velocity.y < 0)
+            if (rb.linearVelocity.y < 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
             }
             clamped = true;
         }
         else if (playerPos.y > maxY)
         {
             newPos.y = maxY;
-            if (rb.velocity.y > 0)
+            if (rb.linearVelocity.y > 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
             }
             clamped = true;
         }

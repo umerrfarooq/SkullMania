@@ -10,7 +10,7 @@ public class IdleState : PlayerBaseState
     public override void Enter()
     {
         // Stop movement
-        ctx.rb.velocity = new Vector2(0, ctx.rb.velocity.y);
+        ctx.rb.linearVelocity = new Vector2(0, ctx.rb.linearVelocity.y);
         
         // Update animations
         if (ctx.animator != null)

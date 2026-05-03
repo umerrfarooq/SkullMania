@@ -23,7 +23,7 @@ public class WalkingState : PlayerBaseState
     public override void Update()
     {
         // Move the player
-        ctx.rb.velocity = new Vector2(ctx.moveInput * ctx.speed, ctx.rb.velocity.y);
+        ctx.rb.linearVelocity = new Vector2(ctx.moveInput * ctx.speed, ctx.rb.linearVelocity.y);
         
         // Flip sprite based on direction
         if (ctx.moveInput > 0)

@@ -22,7 +22,7 @@ public class FallingState : PlayerBaseState
     public override void Update()
     {
         // Air control while falling
-        ctx.rb.velocity = new Vector2(ctx.moveInput * ctx.speed, ctx.rb.velocity.y);
+        ctx.rb.linearVelocity = new Vector2(ctx.moveInput * ctx.speed, ctx.rb.linearVelocity.y);
         
         // Check for double jump while falling
         if (Input.GetKeyDown(KeyCode.Space) && ctx.canDoubleJump)
